@@ -2,27 +2,22 @@ def solution(genres, plays):
     gp = {}
     
     for i in range(len(genres)):
-        g = genres[i]
-        gp.setdefault(g,[])
-        gp[g].append([plays[i],i])
+        p = genres[i]
+        gp.setdefault(p , [])
+        gp[p].append([plays[i], i])
         
-    total = {}
+    s_genres = {}
     for g in gp:
-        total[g] = sum(x[0] for x in gp[g])
+        s_genres[g] = sum(x[0]for x in gp[g])
         
     for g in gp:
-        gp[g].sort(key = lambda x: (-x[0],x[1]))
+        gp[g].sort(key=lambda x: (-x[0], x[1]))
         
-        
-    sorted_genres = sorted(total, key=lambda g: -total[g])
-                
-    answer = []        
-    for g in sorted_genres:
-        for x in gp[g][:2]:
+    s_genres_sort = sorted(s_genres, key=lambda x: -s_genres[x])
+    
+    answer = []
+    for p in s_genres_sort:
+        for x in gp[p][:2]:
             answer.append(x[1])
-            
-        
-        
-        
-        
+                
     return answer
